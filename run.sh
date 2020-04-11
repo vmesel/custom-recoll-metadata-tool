@@ -1,0 +1,1 @@
+python metadata_gen.py > metadados.json
