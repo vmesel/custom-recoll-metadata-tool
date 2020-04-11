@@ -39,7 +39,7 @@ class MetadataGenerator:
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(
                     'credentials.json', SCOPES)
-            self.creds = flow.run_local_server(port=0)
+            	self.creds = flow.run_local_server(port=0)
         token = open('token.pickle', 'wb')
         pickle.dump(self.creds, token)
         token.close()
@@ -83,10 +83,10 @@ class MetadataGenerator:
         metadata_dict = {}
         
         middle_json = [json.loads(json.dumps(meta)) for meta in metadata_[0]]
-        end_dict = { item[u"Nome do Arquivo"]: item for item in middle_json }
+        end_dict = { item[u"nome_arquivo"]: item for item in middle_json }
         text = repr(end_dict).decode("unicode-escape").replace("u'", "'")
 
-        print(text.encode('utf-8'))
+        print(text.replace("'", "\"").replace("\n", "").encode('utf-8'))
 
         
 
